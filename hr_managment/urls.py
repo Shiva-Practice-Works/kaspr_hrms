@@ -1,8 +1,6 @@
 from django.urls import path ,include
-from .views import Hr_dashboard, Hr_login, Hr_registration
+from .views import  Hr_login, Hr_registration
 urlpatterns = [
-    path('hrd/', Hr_dashboard),
-    path('hrl/', Hr_login),
-    path('hrr/', Hr_registration),
-   
+    path('hrl/', Hr_login,name='Hr_login'),
+    path('hrr/', Hr_registration, name='Hr_registration'),
 ]
