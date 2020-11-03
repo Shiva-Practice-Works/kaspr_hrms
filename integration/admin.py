@@ -8,10 +8,10 @@ from .models import *
 
 @admin.register(Band_Status)
 class Band_StatusAdmin(admin.ModelAdmin):
-    list_display = ('student_uniq_portal_id','hr_uniq_portal_id', 'status')
+    list_display = ('student_email','hr_email', 'status')
 
 
 @admin.register(Conversion_box)
 class Conversion_boxAdmin(admin.ModelAdmin):
-    list_display = ('student_uniq_portal_id','hr_uniq_portal_id','time_frame')
+    list_display = ('student_email','hr_email','time_frame')
 

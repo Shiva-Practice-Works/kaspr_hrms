@@ -5,21 +5,49 @@
 
 from django.shortcuts import render
 from hr_managment.models import Hr_Detailes
+from .models import *
+
+import datetime
+from integration.student.dashboard import available_hr
+
 
 def Hr_registration(request):
     if request.method == 'POST':
-        print('reg POST')
-        return render(request, 'hr_managment/hr_login.html')
+        hrname = request.POST['hrname']
+        hrcompany = request.POST['hrcompany']
+        hremail = request.POST['hremail']
+        hrpassword = request.POST['hrpassword']
+        hrctype = request.POST['hrctype']
+        hrmobile = request.POST['hrmobile']
+        if Hr_Detailes.objects.filter(hr_mail=hremail).exists():
+            data = {'method':'post','status':'Email already existed','code':'error'}
+            return render(request, 'hr_managment/hr_reg.html',data)
+        else:
+            query = Hr_Detailes( hr_name =hrname,
+                            hr_company =  hrcompany,
+                            hr_company_type = hrctype,
+                            hr_mail = hremail,
+                            hr_password = hrpassword,
+                            hr_number = hrmobile,
+                            doj_portal = datetime.datetime.now())
+            query.save()
+            data = {'method':'post','status':'Details saved sucessfully','code':'ok'}
+            return render(request, 'hr_managment/hr_reg.html',data)
     else:
-        print('reg GET')
-        return render(request, 'hr_managment/hr_reg.html')
+        data = {'method':'get'}
+        return render(request, 'hr_managment/hr_reg.html',data)
 
 
 def Hr_login(request):
     if request.method == 'POST':
-        print('login POST')
-        return render(request, 'hr_managment/hr_dashboard.html')
-    else:
-        print('login GET')
+        hremail = request.POST['hremail']
+        hrpassword = request.POST['hrpassword']
+        if Hr_Detailes.objects.filter(hr_mail=hremail,hr_password = hrpassword,).exists():
+            return render(request, 'hr_managment/hr_dashboard.html')
+        else:
+            data = {'method':'post','status':'Email Or Password Wrong','code':'error'}
+            return render(request, 'hr_managment/hr_login.html',data)
+    else: 
+        
         return render(request, 'hr_managment/hr_login.html')
 

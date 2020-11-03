@@ -7,7 +7,6 @@ from django.db import models
 
 #table for intrested hr's on portal
 class Hr_Detailes(models.Model):
-    hr_uniq_portal_id = models.CharField(max_length=100)
     hr_name = models.CharField(max_length=100)
     hr_company = models.CharField(max_length=100) 
     hr_company_type = models.CharField(max_length=100)

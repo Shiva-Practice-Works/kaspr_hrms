@@ -13,41 +13,49 @@ last_edited 03/11/2020
 </head>
 <body>
 <div class="container">
+
+  {% if method == 'post' and code == 'error' %}
+  <div class="alert alert-danger" role="alert">{{ status }}</div>
+  {% elif method == 'post' and code == 'ok' %}
+  <div class="alert alert-success" role="alert">{{ status }}</div>
+  {% endif %}
+
+
 	<center><h5>HR Registration</h5></center>
 	<form method="POST" action="{% url 'Hr_registration' %}">{% csrf_token %}
 	    <div class="form-row">
 	 	    <div class="form-group col-md-12">
                 <label for="hrname">Name</label>
-                <input type="text" class="form-control" id="hrname">
+                <input name="hrname"  type="text" class="form-control" id="hrname">
             </div>
 	    </div>
 	    <div class="form-row">
 	 	    <div class="form-group col-md-12">
                 <label for="hrcompany">Company Name</label>
-                <input type="text" class="form-control" id="hrcompany">
+                <input  name="hrcompany" type="text" class="form-control" id="hrcompany">
             </div>
 	    </div>
 	    <div class="form-row">
 	 	    <div class="form-group col-md-6">
                 <label for="hremail">Email</label>
-                <input type="email" class="form-control" id="hremail" >
+                <input type="email" class="form-control" name="hremail"  id="hremail" >
             </div>
             <div class="form-group col-md-6">
                 <label for="hrpassword">Password</label>
-                <input type="password" class="form-control" id="hrpassword">
+                <input type="password" class="form-control" name="hrpassword" id="hrpassword">
             </div>
 	    </div>
 	    <div class="form-row">
 	 	    <div class="form-group col-md-6">
                 <label for="hrctype">Company Based on</label>
-                    <select class="form-control" id="hrctype">
-                        <option>Product Based</option>
+                    <select class="form-control" id="hrctype" name='hrctype' >
+                        <option >Product Based</option>
                         <option>Service Based</option>
                     </select>
             </div>
             <div class="form-group col-md-6">
-                <label for="hrmobile">Mobile</label>
-                <input type="tel" class="form-control" id="hrnumber" >
+                <label  for="hrmobile">Mobile</label>
+                <input name='hrmobile'  type="tel" class="form-control" id="hrnumber" >
             </div>
 	    </div>
    
@@ -60,7 +68,7 @@ last_edited 03/11/2020
 
 <style type="text/css">
 	.container{
-		margin-top: 5%;
+		margin-top: 3%;
 	}
 	label{
 		border-bottom: 2px solid blue;

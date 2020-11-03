@@ -13,18 +13,22 @@ last_edited 03/11/2020
 </head>
 <body>
 <div class="container">
+  {% if method == 'post' and code == 'error' %}
+  <div class="alert alert-danger" role="alert">{{ status }}</div>
+  {% endif %}
+
 	<center><h5>HR Login</h5></center>
 	<form method="POST" action="{% url 'Hr_login' %}">{% csrf_token %}
 	    <div class="form-row">
 	 	    <div class="form-group col-md-12">
                 <label for="hremail">Email ID</label>
-                <input type="email" class="form-control" id="hremail">
+                <input name="hremail" type="email" class="form-control" id="hremail">
             </div>
 	    </div>
 	    <div class="form-row">
 	 	    <div class="form-group col-md-12">
                 <label for="hrpassword">Password</label>
-                <input type="password" class="form-control" id="hrpassword">
+                <input name="hrpassword" type="password" class="form-control" id="hrpassword">
             </div>
 	    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -34,7 +38,7 @@ last_edited 03/11/2020
 
 <style type="text/css">
 	.container{
-		margin-top: 5%;
+		margin-top: 3%;
 	}
 	label{
 		border-bottom: 2px solid blue;
