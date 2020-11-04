@@ -1,15 +1,13 @@
 #dev shiva gangula.
 #intialized 02/11/2020
-#last_edited 02/11/2020
+#last_edited 04/11/2020
 
 
 from django.shortcuts import render
 from hr_managment.models import Hr_Detailes
 from .models import *
-
 import datetime
-from integration.student.dashboard import available_hr
-
+from integration.student.dashboard import notifications
 
 def Hr_registration(request):
     if request.method == 'POST':
@@ -37,17 +35,17 @@ def Hr_registration(request):
         data = {'method':'get'}
         return render(request, 'hr_managment/hr_reg.html',data)
 
-
+from integration.hr.dashboard import availeble_requests
 def Hr_login(request):
     if request.method == 'POST':
         hremail = request.POST['hremail']
         hrpassword = request.POST['hrpassword']
         if Hr_Detailes.objects.filter(hr_mail=hremail,hr_password = hrpassword,).exists():
-            return render(request, 'hr_managment/hr_dashboard.html')
+            data = {'a_requ':availeble_requests(hremail),'hr_email':hremail}
+            return render(request, 'hr_managment/hr_dashboard.html',data)
         else:
-            data = {'method':'post','status':'Email Or Password Wrong','code':'error'}
+            data = {'method':'post','status':'Email Or Password Wrong','code':'error',}
             return render(request, 'hr_managment/hr_login.html',data)
     else: 
-        
         return render(request, 'hr_managment/hr_login.html')
 

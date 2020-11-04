@@ -8,8 +8,11 @@ from django.urls import path ,include
 from integration.views import home
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('hrm/',include('hr_managment.urls')), 
+    path('su/',include('student_managment.urls')), 
+    path('inti/',include('integration.urls')), 
 ]

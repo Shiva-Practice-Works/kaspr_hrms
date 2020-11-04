@@ -1,0 +1,16 @@
+
+{% for i in noti %}
+       <div class="noticard card" >
+           <h3> HR name :{{ i.hr_name}}<h3></h3>
+           <h3>status: {{ i.status }}</h3>
+ 
+</div>
+{% endfor %}
+     
+
+<style type="text/css">
+.noticard{
+	width: 100%;
+}
+     	
+</style>

@@ -1,0 +1,55 @@
+{% for  i in a_requ %}
+<div class="cardn">
+	<div class="subcard">
+        <span>Student Name : {{ i.student_name }}</span><br>
+        <span>Student Contact : {{ i.student_contact }} </span><br>
+        <span>Student DOB : {{ i.student_dob }}</span><br>
+        <span>Student Qualification : {{ i.student_quali }}</span><br>
+        <span>Student Passing Year : {{ i.student_pass_year }}</span><br>
+        <span>Student Email : {{ i.student_email }}</span><br>
+	</div>
+	 <div class="oncontrol">
+        <form method="POST" action="{% url 'hr_request_accept_reject' %}">{% csrf_token %} 
+           <input type="hidden" id="student_email" name="student_email" value="{{ i.student_email }}">
+           <input type="hidden" id="hr_email" name="hr_email" value="{{ hr_email }}">
+           <input type="hidden" id="status" name="status" value="Accept">
+             <button class="btn btn-primary" type="submit">Accept</button>
+        </form>
+        <form method="POST" action="{% url 'hr_request_accept_reject' %}">{% csrf_token %} 
+           <input type="hidden" id="student_email" name="student_email" value="{{ i.student_email }}">
+           <input type="hidden" id="hr_email" name="hr_email" value="{{ hr_email }}">
+           <input type="hidden" id="status" name="status" value="Reject">
+             <button class="btn btn-primary" type="submit">Reject</button>
+        </form>
+    
+    </div>
+</div>
+{% endfor %}
+
+<script type="text/javascript">
+	
+
+
+</script>
+
+
+<style type="text/css">
+	.cardn{
+		width: 100%;
+		height: 200px;
+		border:1px solid gray;
+		padding: 20px;
+		border-radius: 5px;
+		margin: 10px;
+	}
+	.subcard{
+		float: left;
+	}
+	.oncontrol{
+		float: right;
+	}
+	
+	.btn3:hover{
+        
+	}
+</style>

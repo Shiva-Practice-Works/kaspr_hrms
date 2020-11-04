@@ -18,6 +18,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'integration',
     'hr_managment',
+    'student_managment',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

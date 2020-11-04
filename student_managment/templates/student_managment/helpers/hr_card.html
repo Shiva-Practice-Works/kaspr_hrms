@@ -1,0 +1,31 @@
+
+
+{% for hr_d in hr_details %}
+    
+      
+       <div class="card" >
+  <div class="card-body">
+    <h5 class="card-title">{{ hr_d.hr_name }}</h5>
+    </span><span class="card-text">Company : {{ hr_d.hr_company }}( {{ hr_d.hr_company_type }} )</span>
+    <a onclick="get_hr_email('{{ hr_d.hr_mail }}')"
+         data-toggle="modal" data-target="#myModal" href="#" class="btn btn-success">Request</a>
+ 
+</div>
+      </div>
+  {% endfor %}
+
+
+
+<script type="text/javascript">
+    var hr_email = '';
+	function get_hr_email(hhr_email,s_email) {
+		hr_email = hhr_email;
+		console.log(hr_email)
+	};
+	
+</script>
+<style type="text/css">
+	.card{
+		width: 100%;
+	}
+</style>
