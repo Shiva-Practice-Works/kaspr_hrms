@@ -33,6 +33,7 @@ def notifications(student_email):
         tem['time_frame'] = status_details.time_frame
         tem['status'] = status_details.status
         lnoti.append(tem)
+    print(lnoti)
     return lnoti
 
 

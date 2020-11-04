@@ -1,16 +1,31 @@
 
 {% for i in noti %}
-       <div class="noticard card" >
-           <h3> HR name :{{ i.hr_name}}<h3></h3>
-           <h3>status: {{ i.status }}</h3>
+    {% if i.status == 'Accept' %}
+       <div class="noticard card" style="background: green">
+           <h4> HR name :{{ i.hr_name}}</h4><br>
+           <h6>status: {{ i.status }}</h6>
+        </div>
+    {% elif i.status == 'Rejected' %}
+       <div class="noticard card" style="background: red">
+           <h4> HR name :{{ i.hr_name}}</h4><br>
+           <h6>status: {{ i.status }}</h6>
+        </div>
+    {% elif i.status == 'Pending' %}
+       <div class="noticard card" style="background: blue">
+           <h4> HR name :{{ i.hr_name}}</h4><br>
+           <h6>status: {{ i.status }}</h6>
+        </div>
+    {% endif %}
  
-</div>
+
 {% endfor %}
      
 
 <style type="text/css">
 .noticard{
 	width: 100%;
+	padding: 10px;
+	color: white;
 }
      	
 </style>
