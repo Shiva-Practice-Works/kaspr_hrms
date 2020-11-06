@@ -43,7 +43,7 @@ def hr_student_conversions(request):
         pass
 def hr_request_accept_reject(request):
     out = """ <html><head>
-                <meta http-equiv="refresh" content="3;url=/hrm/hrl/" />
+                <meta http-equiv="refresh" content="3;url=/hrm/hrl/"/>
                 </head><body>
                 <h3>{}</h3>
                 </body></html>
@@ -54,11 +54,17 @@ def hr_request_accept_reject(request):
         status = request.POST['status']
         if Conversion_box.objects.filter(student_email =student_email, hr_email=hr_email,status='Pending').exists():
             if status == 'Accept':
-              Conversion_box.objects.filter(student_email =student_email, hr_email=hr_email).update(status='Accept')
+              hrround = request.POST['round']
+              hrmsg = request.POST['message']
+              hrrounddate = request.POST['rounddate']
+              Conversion_box.objects.filter(student_email =student_email, hr_email=hr_email).update(
+                                                             status='Accept',
+                                                             hr_msg=hrmsg,
+                                                             hrround=hrround,
+                                                             Hrrounwillbe=hrrounddate)
               return HttpResponse(out.format('You Accepted Student request'))
             else:
               Conversion_box.objects.filter(student_email =student_email, hr_email=hr_email).update(status='Rejected')
               return HttpResponse(out.format('You Rejected Student request'))
-        
         else:
            return HttpResponse(out.format('Sometihng went Wrong'))

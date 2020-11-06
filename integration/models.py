@@ -9,8 +9,10 @@ from django.db import models
 class Conversion_box(models.Model):
      student_email  = models.EmailField(max_length=100)
      hr_email = models.EmailField(max_length=100)
-     student_msg = models.CharField(max_length=180) #do not exceed more then 180 char
-     hr_msg = models.CharField(max_length=180) #do not exceed more then 180 char
+     student_msg = models.CharField(max_length=500) 
+     hr_msg = models.CharField(max_length=500) 
+     hrround = models.CharField(max_length=180) 
+     Hrrounwillbe = models.DateField()
      time_frame = models.DateTimeField()
      status = models.CharField(max_length=100)
      def __str__(self):

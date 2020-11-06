@@ -1,7 +1,7 @@
 <!-- 
 dev shiva gangula.
 intialized 02/11/2020
-last_edited 02/11/2020
+last_edited 05/11/2020
 
 -->
 <!DOCTYPE html>
@@ -15,11 +15,44 @@ last_edited 02/11/2020
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<center><h1>HR Dashboard</h1></center>
-<div class="container">
-	
-{% include 'hr_managment/helpers/list_requests.html' %}
+<h6 class="stitle">Welcome Back to Ganesh</h6>
+	    {% include 'hr_managment/helpers/list_requests.html' %}
+ {% include 'hr_managment/helpers/hr_request_reject_model.html' %}
+        {% include 'hr_managment/helpers/hr_request_accept_model.html' %}
 
-</div>
 </body>
+<style type="text/css">
+	body{		
+	}
+	.title{
+		background: skyblue;
+		padding: 10px;
+		color: white;
+	}
+	.stitle{
+		background: skyblue;
+		padding: 10px;
+		color: white;
+	}
+</style>
+<script type="text/javascript">
+	var student_email = '';
+	function get_emails(ss) {
+	       student_email = ss;
+	       document.getElementById('student_email').value = student_email;
+	       document.getElementById('student_email2').value = student_email;
+		};
+	function post_accept() {
+		console.log(student_email)
+         document.getElementById("myForm2").submit(); 
+  };
+  function post_rejection() {
+  	console.log(student_email)
+     document.getElementById("myForm").submit(); 
+  };
+
+</script>
+
+
+
 </html>
