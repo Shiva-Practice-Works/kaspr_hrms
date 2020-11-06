@@ -11,11 +11,6 @@ import datetime
 def home(request):
     return render(request, 'integration/home.html')
 
-
-from django.http import JsonResponse
-
-
-
 def hr_student_conversions(request):
     out = """ <html><head>
                 <meta http-equiv="refresh" content="3;url=/su/student_login_details/" />

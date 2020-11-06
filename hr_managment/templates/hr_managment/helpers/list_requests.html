@@ -2,15 +2,15 @@
 <div class="row d-flex justify-content-center">
 	{% for  i in a_requ %}
     <div class="col-md-3 card">
-         <div class="b-det">
-         	<span class="d-title">Student Name</span><span class="d-details">{{ i.student_name }}</span><br>
-         	<span class="d-title">Passing Year</span><span class="d-details">{{ i.student_pass_year }}</span><br>
-         	<span class="d-title">Qualification</span><span class="d-details">{{ i.student_quali }}</span><br>
-         </div>
-         <div class="b-action">
+    	<div class="b-action">
          	<button onclick="get_emails('{{ i.student_email }}')" class="btn btn-success" type="submit" data-toggle="modal" data-target="#acceptModel" href="#">Accept</button>
          	<button onclick="get_emails('{{ i.student_email }}')" class="btn btn-danger" type="submit" data-toggle="modal" data-target="#rejectModel" href="#">Reject</button>
          </div> 
+         <div class="b-det">
+         	<span class="d-title">Student Name</span><span class="d-details">{{ i.student_name }}</span><br>
+         	<span class="d-title">Passing Year</span><span class="d-details">{{ i.student_pass_year }}</span><br>
+         	<span class="d-title">Student Message :</span><span class="d-details2">{{ i.student_msg }}</span><br>
+         </div>
     </div>
     {% endfor %}
 </div>
@@ -19,7 +19,7 @@
 	.card{
 		width: 33%;
 		margin: 8px;
-		height: 180px;
+		height: 200px;
 		border:1px solid gray;
 		padding: 8px;
 		display: table-cell;
@@ -43,7 +43,6 @@
 	}
 	.b-action{
 		margin-left: 90px;
-		margin-top: 50px;
 	}
 </style>
 

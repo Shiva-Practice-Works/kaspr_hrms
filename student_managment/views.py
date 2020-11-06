@@ -21,16 +21,16 @@ def student_register(request):
     else:
         return render(request, 'student_managment/registration.html')
 
-from integration.student.dashboard import available_hr,notifications
+from integration.student.dashboard import available_hr
 def student_login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
         login=StudentRegistration.objects.filter(emil=email,password=password)
         if login:
-            data = {'hr_details':available_hr(),
+            data = {'hr_details':available_hr(email),
                     'student_email':email,
-                    'noti':notifications(email)}
+                    }
             return render(request,'student_managment/home.html',data)
     else:
         return render(request,'student_managment/student_login.html')

@@ -1,40 +1,40 @@
 #dev shiva gangula.
 #intialized 02/11/2020
-#last_edited 04/11/2020
+#last_edited 05/11/2020
 
 from hr_managment.models import *
-def available_hr():
-    ahr = Hr_Detailes.objects.all()
-    lhr = []
-    for qobject in ahr:
-        tem = {}
-        tem['hr_name'] = qobject.hr_name
-        tem['hr_company'] = qobject.hr_company
-        tem['hr_mail'] = qobject.hr_mail
-        tem['hr_company_type'] = qobject.hr_company_type
-        tem['hr_doj'] = qobject.doj_portal
-        lhr.append(tem)
-    return lhr
-
 from integration.models import *
-def notifications(student_email):
-    student_status = Conversion_box.objects.filter(student_email=student_email)
-    lnoti = []
-    for status_details in student_status:
+
+def available_hr(st_email):
+    hrs = Hr_Detailes.objects.all()
+    hrdata = []
+    for hobject in hrs:
         tem = {}
-        hr_query = Hr_Detailes.objects.get(hr_mail=status_details.hr_email)
-        tem['hr_name'] = hr_query.hr_name
-        tem['hr_company'] = hr_query.hr_company
-        tem['hr_company_type'] = hr_query.hr_company_type
-        tem['student_email'] = status_details.student_email
-        tem['hr_email'] = status_details.hr_email
-        tem['hr_msg'] = status_details.hr_msg
-        tem['student_msg'] = status_details.student_msg
-        tem['time_frame'] = status_details.time_frame
-        tem['status'] = status_details.status
-        lnoti.append(tem)
-    print(lnoti)
-    return lnoti
-
-
-
+        tem['hr_name'] = hobject.hr_name
+        tem['hr_company'] = hobject.hr_company
+        tem['hr_email'] = hobject.hr_mail
+        tem['student_email'] = st_email
+        if Conversion_box.objects.filter(hr_email= hobject.hr_mail,student_email = st_email).exists():
+           hr_conversions = Conversion_box.objects.get(hr_email = hobject.hr_mail,student_email = st_email)
+           tem['hr_status'] = hr_conversions.status
+           if hr_conversions.status == 'Accept':
+              tem['hr_msg'] = hr_conversions.hr_msg
+              tem['hrround'] = hr_conversions.hrround
+              tem['Hrrounwillbe'] = hr_conversions.Hrrounwillbe
+              d=hobject.hr_mail.split('@')
+              tem['code'] = d[0]
+        else:
+           tem['hr_status'] = 'Request'
+        hrdata.append(tem)
+    return hrdata
+    """
+    data = [
+           {'hr_name':'hrname1', *
+            'hrcompany':'tcs', *
+            'status':'Request/Accepted/Rejected/Pending',
+            'hrmsg':'message',
+            'hr_email':hr@email.com, *
+            'student_email':student@email.com,
+            'hr_round':'hrround',
+            'round_will':date}]
+    """

@@ -7,7 +7,6 @@ from django.shortcuts import render
 from hr_managment.models import Hr_Detailes
 from .models import *
 import datetime
-from integration.student.dashboard import notifications
 
 def Hr_registration(request):
     if request.method == 'POST':

@@ -1,32 +1,64 @@
+{% include 'student_managment/helpers/st_accept_model.html' %}
 
-
-{% for hr_d in hr_details %}
-    
-      
-       <div class="card" >
-  <div class="card-body">
-    <h5 class="card-title">{{ hr_d.hr_name }}</h5>
-    </span><span class="card-text">Company : {{ hr_d.hr_company }}( {{ hr_d.hr_company_type }} )</span>
-    <a onclick="get_hr_email('{{ hr_d.hr_mail }}')"
-         data-toggle="modal" data-target="#myModal" href="#" class="btn btn-success">Request</a>
- 
+<div class="row d-flex justify-content-center">
+  {% for i in hr_details %}
+    <div class="col-md-3 card">
+         <div class="b-det">
+          <span class="d-title">HR Name</span><span class="d-details">{{ i.hr_name }}</span><br>
+          <span class="d-title">Company</span><span class="d-details">{{ i.hr_company }}</span><br>
+         </div>
+         <div class="b-action">
+          {% if i.hr_status == 'Accept' %}
+          <button class="btn btn-success" type="submit" data-toggle="modal" data-target="#{{ i.code }}" href="#">HR Accepted</button>
+          {% elif i.hr_status == 'Pending' %}
+          <button  class="btn btn-warning" type="submit" data-toggle="modal" data-target="#" href="#">{{ i.hr_status }}</button>
+          {% elif i.hr_status == 'Request' %}
+          <button onclick="get_email('{{ i.student_email }}','{{ i.hr_email }}')" class="btn btn-primary" type="submit" data-toggle="modal" data-target="#Request_Modal" href="#">{{ i.hr_status }}</button>
+          {% elif i.hr_status == 'Rejected' %}
+          <button  class="btn btn-danger" type="submit" data-toggle="modal" data-target="#" href="#">HR Rejected</button>
+          {% endif %}
+         </div> 
+    </div>
+    {% endfor %}
 </div>
-      </div>
-  {% endfor %}
 
+{% include 'student_managment/helpers/request_model.html' %}
+
+
+
+<style type="text/css">
+  .card{
+    width: 30%;
+    margin: 8px;
+    height: 150px;
+    border:1px solid gray;
+    padding: 8px;
+    
+  }
+  .card:hover{
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  .d-title{
+    color: blue;
+    text-align: center;
+    text-transform: uppercase;
+    border-left: 5px solid blue;
+    padding: 3px;
+  }
+  .d-details{
+    float: right;
+  }
+  .b-action{
+    margin-top: 50px;
+  }
+</style>
 
 
 <script type="text/javascript">
-    var hr_email = '';
-	function get_hr_email(hhr_email,s_email) {
-		hr_email = hhr_email;
-		console.log(hr_email)
-	};
-	
+  var student_email = ''
+  var hr_email = ''
+  function get_email(se,hre) {
+      student_email = se;
+      hr_email = hre;
+  }
 </script>
-<style type="text/css">
-	.card{
-		width: 100%;
-    margin: 15px;
-	}
-</style>

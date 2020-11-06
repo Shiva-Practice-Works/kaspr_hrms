@@ -1,0 +1,26 @@
+  {% for i in hr_details %}
+
+<div id="{{ i.code }}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Conformation from HR</h4>
+      </div>
+      <div class="modal-body">
+           <span style="color:darkblue">Greeting from HR :</span><br>
+           {{ i.hr_msg }}<br>
+           <p style="color:red">The HR Decided your <span tyle="color: green">{{ i.hrround }}</span> will conduct on
+           <span style="color: green">{{ i.Hrrounwillbe }}</span> . so be sure ready for that time.<br>
+           Thank you have a nice day.<p>
+      </div>
+      <div class="modal-footer">
+        <button  type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+
+
+
+
